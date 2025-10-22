@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using MVC.Models;
 
 namespace MVC.Controllers;
-
+//****Uso de ChatGPT
 public class HomeController : Controller
 {
     [HttpGet]
@@ -17,17 +17,17 @@ public class HomeController : Controller
         ViewBag.Valid = ModelState.IsValid;
         if (ViewBag.Valid)
         {
-            var charArray = model.Phrase!.ToCharArray().ToList();
-            charArray.ForEach(c =>
+            var filteredChars = model.Phrase!.Where(c => c != ' ').ToList();
+            filteredChars.ForEach(c =>
             {
                 if (!model.Counts!.ContainsKey(c))
                 {
                     model.Counts[c] = 0;
                 }
                 model.Counts[c]++;
-                model.Lower += c.ToString().ToLower();
-                model.Upper += c.ToString().ToUpper();
             });
+            model.Lower = string.Concat(filteredChars.Select(c => char.ToLower(c)));
+            model.Upper = string.Concat(filteredChars.Select(c => char.ToUpper(c)));
         }
         return View(model);
     }

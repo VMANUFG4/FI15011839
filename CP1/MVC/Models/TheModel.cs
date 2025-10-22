@@ -1,14 +1,15 @@
+using System.ComponentModel.DataAnnotations;
 namespace MVC.Models;
 
 public class TheModel
 {
-        // Inicializado para evitar advertencias de non-nullable
-        public string Phrase { get; set; } = string.Empty;
+    [Required(ErrorMessage = "Por favor. La frase es obligatoria.")]
+    [StringLength(25, MinimumLength = 5, ErrorMessage = "Por favor. La frase debe tener entre 5 y 25 caracteres.")]
+    public string? Phrase { get; set; }
 
-        // Inicialización correcta de Dictionary
-        public Dictionary<char, int> Counts { get; set; } = new Dictionary<char, int>();
+    public Dictionary<char, int> Counts { get; set; } = [];
 
-        // Inicializados para evitar advertencias de non-nullable
-        public string Lower { get; set; } = string.Empty;
-        public string Upper { get; set; } = string.Empty;
+    public string? Lower { get; set; }
+
+    public string? Upper { get; set; }
 }

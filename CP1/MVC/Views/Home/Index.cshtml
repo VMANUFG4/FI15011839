@@ -1,7 +1,7 @@
 ﻿@model TheModel
 
 <div>
-    <form asp-action="Index">
+    <form asp-action="Index" method="post">
         <label asp-for="Phrase">Phrase:</label>
         <input asp-for="Phrase" type="text" />
         <small><span asp-validation-for="Phrase"></span></small>
@@ -18,7 +18,7 @@
         {
             <div><b>Counts:</b></div>
             <ul>
-                @foreach(var count in Model.Counts!.OrderBy(c => c.Value).Reverse()) {
+                @foreach(var count in Model.Counts!.OrderByDescending(c => c.Value)) {
                     <li>'@count.Key': @count.Value</li>
                 }
             </ul>
