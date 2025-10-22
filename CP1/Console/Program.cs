@@ -27,13 +27,21 @@ public class Numbers
 
     private static double Iterative(double z, double n)
     {
-        double result = 1.0;
-        for (double i = 1; i <= n; i++)
-        {
-            result = 1.0 + 1.0 / result;
-        
-        }    
-        return result;
+    if (n == 0 || n == 1)
+        return 1.0;
+
+    double fPrevPrev = 1.0; // f(z, 0)
+    double fPrev = 1.0;     // f(z, 1)
+    double fCurrent = 0.0;
+
+    for (double i = 2; i <= n; i++)
+    {
+        fCurrent = z * fPrev + fPrevPrev;
+        fPrevPrev = fPrev;
+        fPrev = fCurrent;
+    }
+
+    return fCurrent;
     }
 
     private static double Round(double value)
