@@ -1,4 +1,6 @@
-﻿public class Numbers
+﻿using System.Security.Cryptography;
+
+public class Numbers
 {
     private static readonly double N = 25;
 
@@ -19,15 +21,22 @@
 
     private static double Recursive(double z, double n)
     {
-        return n == 0 || n == 1 ? n : Recursive(z, n - 1) + Recursive(z, n - 2);
+    if (n == 0) return 1.0;
+    return 1.0 + 1.0 / Recursive(z, n - 1);
     }
 
     private static double Iterative(double z, double n)
     {
-        return 1.0;
+        double result = 1.0;
+        for (double i = 1; i <= n; i++)
+        {
+            result = 1.0 + 1.0 / result;
+        
+        }    
+        return result;
     }
 
-    private double Round(double value)
+    private static double Round(double value)
     {
         return Math.Round(value, 10);
     }
