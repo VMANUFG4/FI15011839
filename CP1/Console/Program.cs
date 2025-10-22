@@ -21,8 +21,8 @@ public class Numbers
 
     private static double Recursive(double z, double n)
     {
-    if (n == 0) return 1.0;
-    return 1.0 + 1.0 / Recursive(z, n - 1);
+    if (n == 0 || n == 1) return 1.0;
+    return z * Recursive(z, n - 1) + Recursive(z, n - 2);
     }
 
     private static double Iterative(double z, double n)
